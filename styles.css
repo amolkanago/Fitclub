@@ -25,7 +25,7 @@
 
 .section__header {
   margin-bottom: 1rem;
-  font-size: 2.25rem;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
   font-weight: 600;
   text-align: center;
   color: var(--white);
@@ -72,6 +72,8 @@ a {
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--primary-color);
+  line-height: 1.5;
+  overflow-x: hidden;
 }
 
 nav {
@@ -81,6 +83,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 
@@ -129,10 +132,10 @@ nav {
   content: "FITNESS";
   position: absolute;
   bottom: 5rem;
-  right: 20rem;
-  font-size: 10rem;
+  right: clamp(1rem, 5vw, 20rem);
+  font-size: clamp(4rem, 18vw, 10rem);
   font-weight: 700;
-  line-height: 7rem;
+  line-height: 1;
   color: var(--white);
   opacity: 0.05;
   z-index: -1;
@@ -152,9 +155,9 @@ nav {
 
 .header__content h1 {
   margin-bottom: 1rem;
-  font-size: 5rem;
+  font-size: clamp(2.75rem, 6vw, 5rem);
   font-weight: 700;
-  line-height: 6rem;
+  line-height: 1.1;
   color: var(--white);
 }
 
@@ -178,9 +181,9 @@ nav {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 40rem;
+  font-size: clamp(15rem, 30vw, 40rem);
   font-weight: 400;
-  line-height: 20rem;
+  line-height: 1;
   color: var(--secondary-color);
   opacity: 0.1;
   z-index: -1;
@@ -495,10 +498,12 @@ nav {
   cursor: pointer;
 }
 
+/* Footer */
+
 .footer__container {
   position: relative;
   display: grid;
-  grid-template-columns: 400px repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 }
 
@@ -509,61 +514,112 @@ nav {
 
 .footer__logo {
   max-width: 150px;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .footer__col p {
   margin-bottom: 2rem;
   color: var(--text-light);
+  line-height: 1.7;
 }
 
 .footer__socials {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
 .footer__socials a {
-  padding: 5px 10px;
-  font-size: 1.25rem;
+  padding: 0.6rem 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--secondary-color);
   border: 1px solid var(--secondary-color);
-  border-radius: 100%;
-  transition: 0.3s;
+  border-radius: 999px;
+  font-size: 1rem;
+  transition: all .3s ease;
 }
 
 .footer__socials a:hover {
   color: var(--white);
-  background-color: var(--secondary-color);
+  background: var(--secondary-color);
 }
 
+
+
 .footer__col h4 {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   font-size: 1.2rem;
-  font-weight: 500;
   color: var(--white);
 }
 
-.footer__col>a {
+.footer__col a {
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: .9rem;
   color: var(--text-light);
-  transition: 0.3s;
+  transition: .3s;
 }
 
-.footer__col>a:hover {
+.footer__col a:hover {
   color: var(--secondary-color);
+  padding-left: 5px;
 }
 
 .footer__bar {
-  max-width: var(--max-width);
-  margin: auto;
+  margin-top: 2rem;
   padding: 1rem;
-  font-size: 0.8rem;
-  color: var(--white);
+  text-align: center;
+  border-top: 1px solid #2d2d2d;
+  color: var(--text-light);
+  font-size: .9rem;
+}
+
+.footer__link {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: .9rem;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: .3s;
+}
+
+.footer__socials .footer__link {
+  margin-bottom: 0;
+}
+
+.footer__link:hover {
+  color: var(--secondary-color);
+  padding-left: 5px;
+}
+
+.footer__newsletter {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.footer__newsletter input {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  background: #1f2125;
+  color: #fff;
+}
+
+.footer__newsletter .btn {
+  padding: 12px 18px;
+  font-size: .9rem;
 }
 
 @media (max-width: 900px) {
+  nav {
+    justify-content: center;
+  }
+
   .nav__links {
     display: none;
   }
@@ -599,9 +655,11 @@ nav {
   }
 
   .footer__container {
-    grid-template-columns: 1fr 150px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
+
+
 
 @media (max-width: 600px) {
   .explore__header {
@@ -613,13 +671,14 @@ nav {
   }
 
   .join__container {
-    margin-bottom: 15rem;
+    margin-bottom: 0;
   }
 
   .join__grid {
+    position: relative;
     width: 100%;
-    margin: 0;
-    bottom: -20rem;
+    margin: 2rem 0 0;
+    bottom: 0;
   }
 
   .price__grid {
@@ -631,7 +690,11 @@ nav {
   }
 
   .footer__container {
-    grid-template-columns: 1fr 150px;
+    grid-template-columns: 1fr;
+  }
+
+  .footer__newsletter {
+    flex-direction: column;
   }
 
   .footer__bar {
